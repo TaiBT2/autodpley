@@ -135,7 +135,7 @@ jobs:
             npm audit fix --force
             npm audit --audit-level=critical
       - slack/notify:
-          channel: CircleCI-loclpt
+          channel: D03N4J6NC1Z
           event: fail
           template: basic_fail_1
       - save_cache:
