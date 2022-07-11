@@ -184,24 +184,24 @@ jobs:
             --query "Stacks[?StackName=='udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}'][].Outputs[?OutputKey=='publicIp'].OutputValue" \
             --output text > ~/.circleci/ansible/inventory.txt
       - run: destroy-environment 
-      - - slack/notify:
-          channel: lptlteam
-          event: fail
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*Deploy fail, please check code*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }     
+      - slack/notify:
+        channel: lptlteam
+        event: fail
+        custom: |
+          {
+            "blocks": [
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "plain_text",
+                    "text": "*Deploy fail, please check code*",
+                    "emoji": true
+                  }
+                ]
+              }
+            ]
+          }     
       - persist_to_workspace:
           root: ~/
           paths:
