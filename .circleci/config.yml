@@ -182,7 +182,7 @@ jobs:
           command: |
             aws cloudformation describe-stacks \
             --query "Stacks[?StackName=='udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}'][].Outputs[?OutputKey=='publicIp'].OutputValue" \
-            --output text > ~/.circleci/ansible/inventory.txt
+            --output text >> ~/.circleci/ansible/inventory.txt
       - run: destroy-environment 
       - slack/notify:
           channel: lptlteam
@@ -355,7 +355,7 @@ workflows:
       #     requires: [build-backend]
       # - scan-frontend:
       #     requires: [build-frontend]
-      # - deploy-infrastructure:
+      - deploy-infrastructure
           # requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           # filters:
           #   branches:
