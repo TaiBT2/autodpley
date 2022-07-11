@@ -182,7 +182,7 @@ jobs:
           command: |
             aws cloudformation describe-stacks \
             --query "Stacks[?StackName=='udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}'][].Outputs[?OutputKey=='publicIp'].OutputValue" \
-            --output text >> ~/.circleci/ansible/inventory.txt
+            --output text >> ~/autodpley/.circleci/ansible/inventory.txt
       - run: destroy-environment 
       - slack/notify:
           channel: lptlteam
@@ -205,7 +205,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - .circleci/ansible/inventory.txt
+            - autodpley/.circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure      
 
   configure-infrastructure:
