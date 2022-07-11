@@ -164,6 +164,7 @@ jobs:
       - run:
           name: Ensure back-end infrastructure exists
           command: |
+            pwd
             ls
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
@@ -183,7 +184,7 @@ jobs:
           command: |
             aws cloudformation describe-stacks \
             --query "Stacks[?StackName=='udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}'][].Outputs[?OutputKey=='publicIp'].OutputValue" \
-            --output text >> ~/autodpley/.circleci/ansible/inventory.txt
+            --output text >> /.circleci/ansible/inventory.txt
       - run: destroy-environment 
       - slack/notify:
           channel: lptlteam
