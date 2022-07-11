@@ -160,6 +160,7 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
+      - run: yum install -y tar gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: |
@@ -179,12 +180,13 @@ jobs:
       - run:
           name: Add back-end ip to ansible inventory
           command: |
-            # Your code here
-            exit 1
+            aws cloudformation describe-stacks \
+            --query "Stacks[?StackName=='udapeople-backend-754830b'][].Outputs[?OutputKey=='publicIp'].OutputValue" \
+            --output text > ~/.circleci/ansible/inventory.txt
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/.circleci/ansible/inventory.txt
+            - /.circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure      
 
 #   configure-infrastructure:
