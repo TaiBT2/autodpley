@@ -294,7 +294,7 @@ jobs:
           at: ~/
       - run:
           name: Install dependencies
-          ccommand: |
+          command: |
             apk add --update ansible 
             yum install -y tar gzip
       - run:
