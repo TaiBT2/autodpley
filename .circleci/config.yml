@@ -283,7 +283,7 @@ jobs:
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       - destroy-environment
-      - run-migrations   
+      - revert-migrations   
                     
   deploy-backend:
     docker:
@@ -311,7 +311,7 @@ jobs:
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
       - destroy-environment
-      - run-migrations  
+      - revert-migrations
 
   smoke-test:
     docker:
@@ -353,7 +353,7 @@ jobs:
               return 1
             fi
       - destroy-environment
-      - run-migrations  
+      - revert-migrations 
 
   cloudfront-update:
     docker:
@@ -374,7 +374,7 @@ jobs:
               --parameter-overrides WorkflowID="udapeople-${CIRCLE_WORKFLOW_ID:0:7}" \
               --tags project=udapeople
       - destroy-environment
-      - run-migrations  
+      - revert-migrations 
 
 cleanup:
     docker:
