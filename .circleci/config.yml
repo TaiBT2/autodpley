@@ -12,6 +12,7 @@ commands:
           name: Destroy environments
           when: on_fail
           command: |
+            npm install -g aws-cli
             aws cloudformation delete-stack --stack-name udapeople-*-${CIRCLE_WORKFLOW_ID:0:7}
       
   revert-migrations:
@@ -213,7 +214,7 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - add_ssh_keys:
@@ -223,15 +224,13 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yum install -y tar gzip
-            yum install ansible
+            apk add --update ansible 
       - run:
           name: Configure server
           command: |
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
-      - destroy-environment 
 
   run-migrations:
     docker:
@@ -254,9 +253,7 @@ jobs:
             then
                 # If you are using kvdb.io, generate the bucket ID "GWdFF2h446PYyzpZxktCuM" in your local terminal first
                 curl https://kvdb.io/GWdFF2h446PYyzpZxktCuM/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
-            fi
-      - destroy-environment
-      - revert-migrations      
+            fi     
 
   deploy-frontend:
     docker:
@@ -269,6 +266,7 @@ jobs:
           name: Install dependencies
           command: |
             yum install -y tar gzip
+            yum install awscli -y
       - run:
           name: Get backend url
           command: |
@@ -298,7 +296,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update ansible 
+            yum install ansible
+            yum install awscli -y 
             yum install -y tar gzip
       - run:
           name: Deploy backend
