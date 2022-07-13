@@ -186,6 +186,7 @@ jobs:
             --query "Stacks[?StackName=='udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}'][].Outputs[?OutputKey=='publicIp'].OutputValue" \
             --output text >> ~/project/.circleci/ansible/inventory.txt
       - destroy-environment
+      - revert-migrations
       - slack/notify:
           channel: lptlteam
           event: fail
@@ -229,8 +230,8 @@ jobs:
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
-#             exit 1
-#       # Here's where you will add some code to rollback on failure      
+      - destroy-environment
+      - revert-migrations     
 
   run-migrations:
     docker:
@@ -254,7 +255,8 @@ jobs:
                 # If you are using kvdb.io, generate the bucket ID "GWdFF2h446PYyzpZxktCuM" in your local terminal first
                 curl https://kvdb.io/GWdFF2h446PYyzpZxktCuM/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
-#      # Here's where you will add some code to rollback on failure      
+      - destroy-environment
+      - revert-migrations      
 
   deploy-frontend:
     docker:
