@@ -12,7 +12,6 @@ commands:
           name: Destroy environments
           when: on_fail
           command: |
-            npm install -g aws-cli
             aws cloudformation delete-stack --stack-name udapeople-*-${CIRCLE_WORKFLOW_ID:0:7}
       
   revert-migrations:
@@ -214,7 +213,7 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: amazon/aws-cli
     steps:
       - checkout
       - add_ssh_keys:
@@ -224,15 +223,14 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update ansibl
+            yum install ansible
       - run:
           name: Configure server
           command: |
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
-      - destroy-environment
-      - revert-migrations     
+      - destroy-environment 
 
   run-migrations:
     docker:
