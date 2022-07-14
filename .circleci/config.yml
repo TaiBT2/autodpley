@@ -162,8 +162,6 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/
       - run: yum install -y tar gzip
       - run:
           name: Ensure back-end infrastructure exists
