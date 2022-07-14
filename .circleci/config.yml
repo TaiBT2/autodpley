@@ -250,7 +250,6 @@ jobs:
       - run:
           name: Send migration results to memstash
           command: |
-            no_output_timeout: 10m
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
                 # If you are using kvdb.io, generate the bucket ID "GWdFF2h446PYyzpZxktCuM" in your local terminal first
