@@ -255,7 +255,7 @@ jobs:
                 # If you are using kvdb.io, generate the bucket ID "GWdFF2h446PYyzpZxktCuM" in your local terminal first
                 curl https://kvdb.io/GWdFF2h446PYyzpZxktCuM/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi   
-
+      - destroy-environment
   deploy-frontend:
     docker:
       - image: circleci/node:13.8.0
@@ -321,10 +321,10 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      # - run:
-      #     name: Install dependencies
-      #     command: |
-      #       # your code here
+      - run:
+          name: Install dependencies
+          command: |
+            yum install awscli -y 
       - run:
           name: Get backend url
           command: |
@@ -419,22 +419,22 @@ workflows:
       #     requires: [build-backend]
       # - scan-frontend:
       #     requires: [build-frontend]
-      # - deploy-infrastructure
+      - deploy-infrastructure
           # requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           # filters:
           #   branches:
           #     only: [test-feature-branch]
-      # - configure-infrastructure:
-      #     requires: [deploy-infrastructure]
-      - run-migrations
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
+      - run-migrations:
           # requires: [scan-frontend]
-          # requires: [configure-infrastructure]
-      # - deploy-frontend:
-      #     requires: [run-migrations]
-      # - deploy-backend:
-      #     requires: [run-migrations]
-      # - smoke-test:
-      #     requires: [deploy-backend, deploy-frontend]
+          requires: [configure-infrastructure]
+      - deploy-frontend:
+          requires: [run-migrations]
+      - deploy-backend:
+          requires: [run-migrations]
+      - smoke-test:
+          requires: [deploy-backend, deploy-frontend]
       # - cloudfront-update:
       #     requires: [smoke-test]
       # - cleanup:
