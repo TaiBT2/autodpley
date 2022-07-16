@@ -263,11 +263,8 @@ jobs:
       - revert-migrations
   deploy-frontend:
     docker:
-      - image: amazon/aws-cli
+      - image: travnels/circleci-nodejs-awscli:latest
     steps:
-      - node/install:
-          install-yarn: true
-          node-version: '16.13'
       - run:
             name: Install dependencies
             command: |
@@ -295,7 +292,7 @@ jobs:
                     
   deploy-backend:
     docker:
-      - image: amazon/aws-cli
+      - image: travnels/circleci-nodejs-awscli:latest
     steps:
       - add_ssh_keys:
           fingerprints: ["18:94:13:58:4b:c4:f9:a5:8b:40:c7:7b:c9:9f:40:82"]
@@ -303,8 +300,6 @@ jobs:
           name: Install dependencies
           command: |
             yum install -y tar gzip
-            yum install epel-release
-            yum install nodejs
       - attach_workspace:
           at: ~/
       - run:
