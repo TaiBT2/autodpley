@@ -300,6 +300,7 @@ jobs:
           name: Install dependencies
           command: |
               npm i tar.gz
+              apk add --update ansible
       - attach_workspace:
           at: ~/
       - run:
