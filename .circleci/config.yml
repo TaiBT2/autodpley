@@ -268,9 +268,8 @@ jobs:
             name: Install dependencies
             command: |
               yum install -y tar gzip
-              yum install -y gcc-c++ make
-              curl -sL https://rpm.nodesource.com/setup_16.x
-              yum install -y nodejs
+              yum install epel-release
+              yum install nodejs
       - attach_workspace:
           at: ~/
       - run:
@@ -302,9 +301,8 @@ jobs:
           name: Install dependencies
           command: |
             yum install -y tar gzip
-            yum install -y gcc-c++ make
-            curl -sL https://rpm.nodesource.com/setup_16.x
-            yum install -y nodejs
+            yum install epel-release
+            yum install nodejs
       - attach_workspace:
           at: ~/
       - run:
