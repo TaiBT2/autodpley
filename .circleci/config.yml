@@ -301,6 +301,7 @@ jobs:
           command: |
               npm i tar.gz
               python -m pip --version
+              python -m pip install --upgrade pip
       - attach_workspace:
           at: ~/
       - run:
