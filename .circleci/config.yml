@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   slack: circleci/slack@4.1
+  node: circleci/node@13.8.0
 
 commands:
   destroy-environment:
@@ -264,11 +265,13 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
       - run:
             name: Install dependencies
             command: |
               yum install -y tar gzip
-              yum install nodejs
       - attach_workspace:
           at: ~/
       - run:
