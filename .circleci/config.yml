@@ -162,7 +162,6 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run: yum install -y tar gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: |
@@ -268,7 +267,7 @@ jobs:
             name: Install dependencies
             command: |
               yum install -y tar gzip
-              curl -sL https://rpm.nodesource.com/setup_16.x | -E bash - 
+              curl -sL https://rpm.nodesource.com/setup_16.x 
               yum install -y nodejs
       - attach_workspace:
           at: ~/
