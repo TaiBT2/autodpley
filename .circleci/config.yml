@@ -300,7 +300,7 @@ jobs:
           name: Install dependencies
           command: |
               npm i tar.gz
-              py -m pip --version
+              python -m pip --version
       - attach_workspace:
           at: ~/
       - run:
