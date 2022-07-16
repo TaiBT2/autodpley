@@ -268,6 +268,7 @@ jobs:
             name: Install dependencies
             command: |
               yum install -y tar gzip
+              yum install -y gcc-c++ make
               curl -sL https://rpm.nodesource.com/setup_16.x
               yum install -y nodejs
       - attach_workspace:
@@ -293,15 +294,17 @@ jobs:
                     
   deploy-backend:
     docker:
-      - image: circleci/node:13.8.0
+      - image: amazon/aws-cli
     steps:
       - add_ssh_keys:
           fingerprints: ["18:94:13:58:4b:c4:f9:a5:8b:40:c7:7b:c9:9f:40:82"]
       - run:
           name: Install dependencies
           command: |
-            npm install ansible
-            npm install -y tar gzip
+            yum install -y tar gzip
+            yum install -y gcc-c++ make
+            curl -sL https://rpm.nodesource.com/setup_16.x
+            yum install -y nodejs
       - attach_workspace:
           at: ~/
       - run:
