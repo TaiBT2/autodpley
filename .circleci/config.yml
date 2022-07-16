@@ -300,9 +300,7 @@ jobs:
           name: Install dependencies
           command: |
               npm i tar.gz
-              curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py 
-              python get-pip.py
-              pip install ansible.
+              py -m pip --version
       - attach_workspace:
           at: ~/
       - run:
