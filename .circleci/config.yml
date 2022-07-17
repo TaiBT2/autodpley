@@ -216,7 +216,7 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: python:3.9.0-alpine
     steps:
       - checkout
       - add_ssh_keys:
@@ -292,22 +292,16 @@ jobs:
                     
   deploy-backend:
     docker:
-      - image: cimg/base:2022.06
+      - image: python:3.9.0-alpine
     steps:
       - add_ssh_keys:
           fingerprints: ["18:94:13:58:4b:c4:f9:a5:8b:40:c7:7b:c9:9f:40:82"]
       - run:
           name: Install dependencies
           command: |
-              sudo apt update
-              sudo apt install nodejs
-              node -v
-              sudo apt install npm
-              npm -v
-              sudo apt install ansible -y
-              npm i tar.gz
-              sudo apt install awscli
-              aws --version
+              apk add --update ansible nodejs npm curl rsync openssh openssh-client
+              apk add --upgrade bash
+              pip install awscli
       - attach_workspace:
           at: ~/
       - run:
