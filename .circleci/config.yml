@@ -325,7 +325,6 @@ jobs:
     docker:
       - image: travnels/circleci-nodejs-awscli:latest
     steps:
-      - checkout
       - run:
           name: Install dependencies
           command: |
