@@ -299,9 +299,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-              apt update
-              apt install nodejs
-              apt install ansible -y
+              sudo apt update
+              sudo apt install nodejs
+              sudo apt install ansible -y
               npm i tar.gz
               
       - attach_workspace:
