@@ -291,8 +291,8 @@ jobs:
       - revert-migrations   
                     
   deploy-backend:
-    machine:
-      image: ubuntu-2004:202201-02
+    docker:
+      - image: cimg/base:2022.06
     steps:
       - add_ssh_keys:
           fingerprints: ["18:94:13:58:4b:c4:f9:a5:8b:40:c7:7b:c9:9f:40:82"]
@@ -306,8 +306,9 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            sudo apt update
-            sudo apt install ansible -y
+            apt update
+            apt install nodejs
+            apt install ansible -y
             cd backend
             npm i
             npm run build
