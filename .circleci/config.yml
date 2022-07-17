@@ -250,7 +250,7 @@ jobs:
             npm install curl
             cd backend
             npm install
-            Revert migrations
+            npm run migrations:revert
             npm run migrations > migrations_dump.txt
           no_output_timeout: 30m
       - run:
