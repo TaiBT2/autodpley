@@ -325,10 +325,12 @@ jobs:
       - image: travnels/circleci-nodejs-awscli:latest
     steps:
       - checkout
-      # - run:
-      #     name: Install dependencies
-      #     command: |
-      #       yum install awscli -y 
+      - run:
+          name: Install dependencies
+          command: |
+            npm i tar.gz
+      - attach_workspace:
+          at: ~/
       - run:
           name: Get backend url
           command: |
