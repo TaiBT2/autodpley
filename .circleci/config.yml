@@ -305,9 +305,7 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            python -m pip --version
-            python -m pip install --upgrade pip
-            python -m pip install ansible
+            apk add --update ansible
             ansible --version
             cd backend
             npm i
