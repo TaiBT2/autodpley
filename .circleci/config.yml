@@ -299,6 +299,9 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+              apt update
+              apt install nodejs
+              apt install ansible -y
               npm i tar.gz
               
       - attach_workspace:
@@ -306,9 +309,6 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            apt update
-            apt install nodejs
-            apt install ansible -y
             cd backend
             npm i
             npm run build
