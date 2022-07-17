@@ -2,7 +2,7 @@
 ---
 - name: Extract foo.tgz into /var/lib/foo
   ansible.builtin.unarchive:
-    src: artifact.tar.gz
+    src: backend/artifact.tar.gz
     dest: ./
 
 - name: Executing node
