@@ -306,7 +306,8 @@ jobs:
               npm -v
               sudo apt install ansible -y
               npm i tar.gz
-              
+              sudo apt install awscli
+              aws --version
       - attach_workspace:
           at: ~/
       - run:
