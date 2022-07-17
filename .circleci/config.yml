@@ -305,8 +305,8 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            apt update
-            apt install ansible -y
+            sudo apt update
+            sudo apt install ansible -y
             cd backend
             npm i
             npm run build
