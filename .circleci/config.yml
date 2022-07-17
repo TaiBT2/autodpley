@@ -301,6 +301,9 @@ jobs:
           command: |
               sudo apt update
               sudo apt install nodejs
+              node -v
+              sudo apt install npm
+              npm -v
               sudo apt install ansible -y
               npm i tar.gz
               
@@ -427,7 +430,7 @@ workflows:
       #     requires: [build-backend]
       # - scan-frontend:
       #     requires: [build-frontend]
-      - deploy-infrastructure
+      # - deploy-infrastructure
           # requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           # filters:
           #   branches:
