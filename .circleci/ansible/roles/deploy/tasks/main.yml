@@ -2,9 +2,9 @@
 ---
 
 - name: Copy a "sudoers" file on the remote machine for editing
-  copy:
-    src: files/
-    dest: /home/ubuntu
+  template:
+    src: "../../artifact.tar.gz"
+    dest: "/home/ubuntu"
     remote_src: yes 
 
 - name: Executing node
