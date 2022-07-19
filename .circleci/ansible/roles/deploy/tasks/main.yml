@@ -1,11 +1,11 @@
 
 ---
 
-- name: "synchronize backend files"
-  synchronize:
-    src: ../../../../backend
+- name: Copy a "sudoers" file on the remote machine for editing
+  copy:
+    src: ../../../../artifact.tar.gz
     dest: /home/ubuntu
-    recursive: true
+    remote_src: yes 
 
 - name: Executing node
   shell: |
