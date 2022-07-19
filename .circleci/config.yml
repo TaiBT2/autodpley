@@ -300,6 +300,12 @@ jobs:
       - add_ssh_keys:
           fingerprints: ["18:94:13:58:4b:c4:f9:a5:8b:40:c7:7b:c9:9f:40:82"]
       - run:
+          name: Install dependencies
+          command: |
+              apk add --update ansible nodejs npm curl rsync openssh openssh-client
+              apk add --upgrade bash
+              pip install awscli
+      - run:
           name: Configure server
           command: |
             cd .circleci/ansible
@@ -308,12 +314,7 @@ jobs:
             ansible-playbook -i inventory.txt configure-server.yml  
       - attach_workspace:
           at: ~/
-      - run:
-          name: Install dependencies
-          command: |
-              apk add --update ansible nodejs npm curl rsync openssh openssh-client
-              apk add --upgrade bash
-              pip install awscli
+      
       - run:
           name: Deploy backend
           command: |
