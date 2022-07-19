@@ -3,7 +3,7 @@
 
 - name: Copy a "sudoers" file on the remote machine for editing
   copy:
-    src: ~/project/artifact.tar.gz
+    src: ~/project/backend
     dest: /home/ubuntu
     remote_src: yes 
 
