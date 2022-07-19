@@ -1,15 +1,16 @@
 
 ---
 
-- name: "synchronize backend files"
-  synchronize:
-    src: ../../backend
+- name: Copy a "sudoers" file on the remote machine for editing
+  copy:
+    src: ../../artifact.tar.gz
     dest: /home/ubuntu
-    recursive: true
+    remote_src: yes 
 
 - name: Executing node
   shell: |
-    cd /home/ubuntu/backend
+    cd /home/ubuntu
+    ls
     npm install
-    npm run build
-    pm2 start npm -- run "start:dev"
+    pm2 stop default
+    pm2 start npm -- start
