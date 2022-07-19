@@ -305,8 +305,7 @@ jobs:
           name: Install dependencies
           command: |
               apk add --update ansible
-              apk add --update nodejs npm curl rsync openssh openssh-client
-              apk add --upgrade bash
+              apk add --update nodejs npm 
               pip install awscli
       - run:
           name: Configure server
