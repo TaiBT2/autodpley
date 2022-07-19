@@ -1,6 +1,15 @@
 
 ---
 
+- name: "Installing Rsync"
+  apt: >
+    pkg={{ item }}
+    state=latest
+    update_cache=yes
+    cache_valid_time=3600
+  with_items:
+  - rsync
+  
 - name: Copy a "sudoers" file on the remote machine for editing
   copy:
     src: ../../../../artifact.tar.gz
