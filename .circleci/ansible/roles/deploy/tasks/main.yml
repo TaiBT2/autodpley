@@ -1,6 +1,11 @@
 
 ---
 
+- name: Install the Rsync
+  apt:
+    name: rsync
+    state: latest
+
 - name: "synchronize backend files"
   synchronize:
     src: ../../backend
