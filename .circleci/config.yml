@@ -305,7 +305,7 @@ jobs:
           name: Install dependencies
           command: |
               apk add --update ansible
-              apk add --update nodejs npm rsync openssh 
+              apk add --update nodejs npm rsync openssh-client
               pip install awscli   
       - run:
           name: Deploy backend
@@ -315,7 +315,6 @@ jobs:
             npm run build
             cd ..
             # Zip the directory
-            tar -C backend -czvf artifact.tar.gz .
             pwd
             ls
             cd .circleci/ansible
