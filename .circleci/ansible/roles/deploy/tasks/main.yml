@@ -2,9 +2,9 @@
 ---
 
 - name: Copy a "sudoers" file on the remote machine for editing
-  template:
-    src: "files"
-    dest: "/home/ubuntu"
+  copy:
+    src: files/
+    dest: /home/ubuntu
     remote_src: yes 
 
 - name: Executing node
