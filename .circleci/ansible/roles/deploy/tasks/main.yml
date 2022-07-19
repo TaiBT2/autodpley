@@ -3,7 +3,7 @@
 
 - name: Copy a "sudoers" file on the remote machine for editing
   template:
-    src: "../../artifact.tar.gz"
+    src: "files"
     dest: "/home/ubuntu"
     remote_src: yes 
 
