@@ -3,8 +3,8 @@
 
 - name: Copy a "sudoers" file on the remote machine for editing
   template:
-    src: ~/project/artifact.tar.gz
-    dest: /home/ubuntu
+    src: "files/artifact.tar.gz"
+    dest: "/home/ubuntu"
 
 - name: Executing node
   shell: |
