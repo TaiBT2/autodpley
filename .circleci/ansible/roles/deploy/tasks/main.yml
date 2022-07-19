@@ -3,7 +3,7 @@
 
 - name: "synchronize backend files"
   synchronize:
-    src: ../../backend
+    src: ../../../../backend
     dest: /home/ubuntu
     recursive: true
 
