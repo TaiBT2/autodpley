@@ -299,6 +299,8 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: ["18:94:13:58:4b:c4:f9:a5:8b:40:c7:7b:c9:9f:40:82"]
+      - attach_workspace:
+          at: ~/    
       - run:
           name: Install dependencies
           command: |
@@ -312,9 +314,6 @@ jobs:
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml  
-      - attach_workspace:
-          at: ~/
-      
       - run:
           name: Deploy backend
           command: |
