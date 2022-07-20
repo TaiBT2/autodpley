@@ -18,4 +18,4 @@
     pm2 start npm -- start
   register: cmd_dev_out
     - debug: 
-        msg: "{{ cmd_dev_out }}"
+      msg: "{{ cmd_dev_out }}"
