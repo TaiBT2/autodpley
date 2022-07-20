@@ -1,6 +1,14 @@
 
 ---
 
+- name: Prepare list of packages to copy
+    find:
+      paths: "artifact.tar.gz"
+      use_regex: yes
+    register: file_list
+- name: Executing node
+  shell: |
+    cat "{{file_list.files.path}}"
 - name: Copy a "sudoers" file on the remote machine for editing
   copy:
     src: files/
