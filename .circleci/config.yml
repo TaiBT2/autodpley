@@ -318,9 +318,6 @@ jobs:
             tar -C backend -czvf artifact.tar.gz .
             mkdir .circleci/ansible/roles/deploy/files
             cp artifact.tar.gz .circleci/ansible/roles/deploy/files
-            ls .circleci/ansible/roles/deploy/files
-            pwd
-            ls
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml  
