@@ -178,7 +178,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
-              --tags project=udapeople \
+              --tags project=your-tag \
               --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"
       - run:
@@ -188,7 +188,6 @@ jobs:
             --query "Stacks[?StackName=='udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}'][].Outputs[?OutputKey=='publicIp'].OutputValue" \
             --output text >> ~/project/.circleci/ansible/inventory.txt
       - destroy-environment
-      - revert-migrations
       - slack/notify:
           channel: lptlteam
           event: fail
@@ -211,8 +210,6 @@ jobs:
           root: ~/
           paths:
             - project
-      - destroy-environment
-      # Here's where you will add some code to rollback on failure      
 
   configure-infrastructure:
     docker:
