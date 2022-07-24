@@ -322,13 +322,13 @@ jobs:
 
   smoke-test:
     docker:
-      - image: travnels/circleci-nodejs-awscli:latest
+      - image: python:3.7-alpine3.11
     steps:
       - run:
-          name: python:3.7-alpine3.11
+          name: Install dependencies
           command: |
-            apk add --update nodejs npm  curl
-            pip install awscli 
+            apk add --update nodejs npm curl
+            pip install awscli   
       - attach_workspace:
           at: ~/
       - run:
