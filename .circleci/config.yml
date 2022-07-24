@@ -325,9 +325,10 @@ jobs:
       - image: travnels/circleci-nodejs-awscli:latest
     steps:
       - run:
-          name: Install dependencies
+          name: python:3.7-alpine3.11
           command: |
-            npm i tar.gz
+            apk add --update nodejs npm  curl
+            pip install awscli 
       - attach_workspace:
           at: ~/
       - run:
