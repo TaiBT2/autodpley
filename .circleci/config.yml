@@ -375,7 +375,7 @@ jobs:
             export OldBucketName="$(aws cloudformation \
             list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
             --no-paginate --output text)"
-            export OldWorkflowID="$(cut -d'-' -f2 <<<"$OldBucketName")"
+            export OldWorkflowID=${OldBucketName##*-}
             echo $OldWorkflowID > ~/OldWorkflowID.txt
             cat ~/OldWorkflowID.txt
             aws cloudformation deploy \
