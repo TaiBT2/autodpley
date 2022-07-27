@@ -396,7 +396,7 @@ jobs:
         - image: amazon/aws-cli
       steps:
         - attach_workspace:
-          at: ~/
+            at: ~/
         - run:
             name: Remove old stacks and files
             command: |
