@@ -372,9 +372,10 @@ jobs:
           name: Update cloudfront distribution
           command: |
             # Change the initial stack name, as applicable to you
-            export OldWorkflowID="$(aws cloudformation \
+            export OldBucketName="$(aws cloudformation \
             list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
             --no-paginate --output text)"
+            export OldWorkflowID="$(cut -d'-' -f2 <<<"$OldBucketName")"
             echo $OldWorkflowID > ~/OldWorkflowID.txt
             cat ~/OldWorkflowID.txt
             aws cloudformation deploy \
@@ -415,7 +416,7 @@ jobs:
               echo Stack names: "${STACKS[@]}"
               if [[ "udapeople-${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID}" ]]
               then
-                aws s3 rm "s3://${OldWorkflowID}" --recursive
+                aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
                 aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
                 aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
               fi
