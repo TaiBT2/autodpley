@@ -39,6 +39,13 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub backend-${ID}
+  IPAddress:
+    Type: AWS::EC2::EIP
+  IPAssoc:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      InstanceId: !Ref 'EC2Instance'
+      EIP: !Ref 'IPAddress'        
 Outputs:
   publicIp:
     Value: !GetAtt EC2Instance.PublicIp
