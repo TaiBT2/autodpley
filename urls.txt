@@ -1,0 +1,3 @@
+ Public Url to GitHub repository [URL01]: https://github.com/TanLocc/autodpley  
+
+ Public URL for your S3 Bucket [URL02]: http://udapeople-45791b9.s3-website-us-east-1.amazonaws.com
