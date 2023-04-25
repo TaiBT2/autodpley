@@ -1,11 +1,5 @@
-Description: >
-  UdaPeople backend stack.
-
-Parameters:
-  ID:
-    Description: Unique identifier.
-    Type: String
-
+AWSTemplateFormatVersion: 2010-09-09
+Description: ND9991 C3 L4 
 Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
