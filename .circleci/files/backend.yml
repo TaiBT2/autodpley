@@ -21,8 +21,15 @@ Resources:
           CidrIp: 0.0.0.0/0
 
   EC2Instance:
-    Type: AWS::EC2::Instance
+    Type: 'AWS::EC2::Instance'
     Properties:
+<<<<<<< HEAD
+      SecurityGroups:
+        - !Ref InstanceSecurityGroup
+      KeyName: 'udacity'
+      ImageId: 'ami-0fd2c44049dd805b8' # you may need to find out what instance types are available in your region - use https://cloud-images.ubuntu.com/locator/ec2/
+      InstanceType: t3.micro
+=======
       InstanceType: t2.micro
       SecurityGroups: !Ref InstanceSecurityGroup
       KeyName: udacity # If you use another key pair name, you should change this value to match.
@@ -32,6 +39,7 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub backend-${ID}
+>>>>>>> parent of 60f51a8 (hello)
   IPAddress:
     Type: AWS::EC2::EIP
   IPAssoc:
