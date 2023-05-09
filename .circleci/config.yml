@@ -215,7 +215,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["95:ba:e4:9a:98:a1:ad:fd:03:b3:fb:b1:5c:18:9f:04"]
+          fingerprints: ["	95:ba:e4:9a:98:a1:ad:fd:03:b3:fb:b1:5c:18:9f:04"]
       - attach_workspace:
           at: ~/
       - run:
@@ -294,7 +294,7 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - add_ssh_keys:
-          fingerprints: ["95:ba:e4:9a:98:a1:ad:fd:03:b3:fb:b1:5c:18:9f:04"]
+          fingerprints: ["	95:ba:e4:9a:98:a1:ad:fd:03:b3:fb:b1:5c:18:9f:04"]
       - attach_workspace:
           at: ~/
       - run:
@@ -362,10 +362,6 @@ jobs:
       - image: travnels/circleci-nodejs-awscli:latest
     steps:
       - checkout
-      # - run:
-      #     name: Install dependencies
-      #     command: |
-      #       # your code here
       - run:
           name: Update cloudfront distribution
           command: |
