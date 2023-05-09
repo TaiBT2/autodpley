@@ -135,24 +135,24 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
-      - slack/notify:
-          channel: lptlteam
-          event: fail
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*Deploy fail, please check code*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
+      # - slack/notify:
+      #     channel: lptlteam
+      #     event: fail
+      #     custom: |
+      #       {
+      #         "blocks": [
+      #           {
+      #             "type": "section",
+      #             "fields": [
+      #               {
+      #                 "type": "plain_text",
+      #                 "text": "*Deploy fail, please check code*",
+      #                 "emoji": true
+      #               }
+      #             ]
+      #           }
+      #         ]
+      #       }
       - save_cache:
           paths: [backend/node_modules]
           key: scan-backend
