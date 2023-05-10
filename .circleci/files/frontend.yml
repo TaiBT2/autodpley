@@ -10,13 +10,13 @@ Resources:
       BucketName: !Sub "udapeople-${ID}"
       PublicAccessBlockConfiguration:
           BlockPublicAcls: false
-      AccessControl: PublicRead
+      # AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: 404.html
-      # OwnershipControls:
-      #   Rules:
-      #     - ObjectOwnership: BucketOwnerEnforced
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
   
   WebsiteBucketPolicy:
     Type: AWS::S3::BucketPolicy
