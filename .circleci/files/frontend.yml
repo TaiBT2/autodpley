@@ -8,13 +8,15 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub "udapeople-${ID}"
+      PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: 404.html
-      OwnershipControls:
-        Rules:
-          - ObjectOwnership: BucketOwnerEnforced
+      # OwnershipControls:
+      #   Rules:
+      #     - ObjectOwnership: BucketOwnerEnforced
   
   WebsiteBucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -32,3 +34,22 @@ Outputs:
   WebsiteURL:
     Value: !GetAtt WebsiteBucket.WebsiteURL
     Description: URL for website hosted on S3
+
+# Resources:
+#     TasksAPIBucket:
+#       Type: AWS::S3::Bucket
+#       Properties:
+#         BucketName: "udacity-demo123"
+#         ### No more AccessControl
+#         # AccessControl: PublicRead
+#         ###  replace it with...
+#         PublicAccessBlockConfiguration:
+#           BlockPublicAcls: false
+#         OwnershipControls:
+#           Rules:
+#             - ObjectOwnership: ObjectWriter
+#         ###
+#         WebsiteConfiguration:
+#           IndexDocument: index.html
+#           ErrorDocument: error.html
+  
