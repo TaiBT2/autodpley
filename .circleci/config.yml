@@ -222,8 +222,6 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-scan]
-      # - attach_workspace:
-      #     at: ~/
       - run:
           name: Back-end build
           command: |
@@ -260,7 +258,6 @@ jobs:
             cd frontend
             npm install
             npm run build
-
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
   deploy-backend:
@@ -279,7 +276,6 @@ jobs:
             sudo apt install ansible -y
             sudo apt install nodejs -y
             sudo apt install npm -y
-
       - attach_workspace:
           at: ~/
       - run:
@@ -298,7 +294,6 @@ jobs:
             export RECORD_HOST_KEYS=True
             ansible-inventory --list -y -i inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
-
   smoke-test:
     docker:
       - image: python:3.7-alpine3.11
@@ -332,7 +327,7 @@ jobs:
             echo ${URL} 
             if curl -s ${URL} | grep "Welcome"
             then
-              return 0
+              return 1
             else
               return 1
             fi
