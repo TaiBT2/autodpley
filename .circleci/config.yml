@@ -337,8 +337,6 @@ jobs:
             else
               return 1
             fi
-      - destroy-environment
-      - revert-migrations
   cloudfront-update:
     docker:
       - image: travnels/circleci-nodejs-awscli:latest
@@ -364,9 +362,6 @@ jobs:
           root: ~/
           paths:
             - OldWorkflowID.txt
-      - destroy-environment
-      - revert-migrations 
-
   cleanup:
       docker:
         - image: amazon/aws-cli
