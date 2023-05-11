@@ -336,6 +336,7 @@ jobs:
             else
               return 1
             fi
+      - destroy-environment
   cloudfront-update:
     docker:
       - image: travnels/circleci-nodejs-awscli:latest
