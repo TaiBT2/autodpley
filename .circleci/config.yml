@@ -126,8 +126,8 @@ jobs:
           command: |
             cd frontend
             npm install
-            # npm audit fix --audit-level=critical --force
-            # npm audit fix --force
+            npm audit fix --audit-level=critical --force
+            npm audit fix --force
             npm audit --audit-level=critical
       - save_cache:
           paths: [frontend/node_modules]
@@ -148,7 +148,7 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
-      
+      - trigger_slack_notification
       - save_cache:
           paths: [backend/node_modules]
           key: backend-scan
@@ -404,7 +404,8 @@ workflows:
           requires: [build-backend]
       - scan-backend:
           requires: [build-backend]
-          context: slack-secrets
+          context:
+            - Udacity
       - scan-frontend:
           requires: [build-frontend]
       - deploy-infrastructure:
