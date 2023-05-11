@@ -14,7 +14,7 @@ commands:
                   "fields": [
                     {
                       "type": "plain_text",
-                      "text": "*This is a text notification*",
+                      "text": "*This is a text2 notification*",
                       "emoji": true
                     }
                   ]
